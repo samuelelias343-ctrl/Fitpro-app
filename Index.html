@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>FitPro - Fitness App Completo</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#FFD700">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="FitPro">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- PWA Icons -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9IiMwMDAwMDAiLz4KPHN2ZyB4PSI0NiIgeT0iNDYiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgNTAgNTAiPgo8cGF0aCBkPSJNMjUgNSBDMzAgOCwgMzUgMTUsIDM1IDI1IEMzNSAzNSwgMzAgNDAsIDI1IDQwIEMyMCA0MCwgMTUgMzUsIDE1IDI1IEMxNSAxNSwgMjAgOCwgMjUgNSBaIiBmaWxsPSIjRkZENzAwIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMiIvPgo8L3N2Zz4KPC9zdmc+">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI1IDUgQzMwIDgsIDM1IDE1LCAzNSAyNSBDMzUgMzUsIDMwIDQwLCAyNSA0MCBDMjAgNDAsIDE1IDM1LCAxNSAyNSBDMTUgMTUsIDIwIDgsIDI1IDUgWiIgZmlsbD0iI0ZGRDcwMCIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjIiLz4KPC9zdmc+">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkZpdFBybyAtIEZpdG5lc3MgQXBwIiwKICAic2hvcnRfbmFtZSI6ICJGaXRQcm8iLAogICJkZXNjcmlwdGlvbiI6ICJTZXUgUGVyc29uYWwgVHJhaW5lciBEaWdpdGFsIENvbXBsZXRvIiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMwMDAwMDAiLAogICJ0aGVtZV9jb2xvciI6ICIjRkZENzAwIiwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUIzYVdSMGFEMGlNVGt5SWlCb1pXbG5hSFE5SWpFNU1pSWdkbWxsZDBKdmVEMGlNQ0F3SURFNU1pQXhPVElpSUdacGJHdzlJbTV2Ym1VaUlIaHRiRzV6UFNKb2RIUndPaTh2ZDNkM0xuY3pMbTl5Wnk4eU1EQXdMM04yWnlJK0NqeHlaV04wSUhkcFpIUm9QU0l4T1RJaUlHaGxhV2RvZEQwaU1Ua3lJaUJ5ZUQwaU1qUWlJR1pwYkd3OUlpTXdNREF3TURBaUx6NEtQSE4yWnlCNFBTSTBOaUlnZVQwaU5EWWlJSGRwWkhSb1BTSXhNREFpSUdobGFXZG9kRDBpTVRBd0lpQjJhV1YzUW05NFBTSXdJREFnTlRBZ05UQWlQZ284Y0dGMGFDQmtQU0pOTWpVZ05TQkRNekFnT0N3Z016VWdNVFVzSURNMUlESTFJRU16TlNBek5Td2dNekFnTkRBc0lESTFJRFEwSUVNeU1DQTBNQ3dnTVRVZ016VXNJREUxSURJMUlFTXhOU0F4TlN3Z01qQWdPQ3dnTWpVZ05TQmFJaUJtYVd4c1BTSWpSa1pFTnpBd0lpQnpkSEp2YTJVOUlpTkdSa1pHUmtZaUlITjBjbTlyWlMxM2FXUjBhRDBpTWlJdlBnbzhMM04yWno0S1BDOXpkbWMrIiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQ==">
+    
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            min-height: 100vh;
+            color: #fff;
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .phone-container {
+            max-width: 100vw;
+            margin: 0;
+            background: #000;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: hidden;
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .phone-container {
+                max-width: 375px;
+                margin: 20px auto;
+                border-radius: 25px;
+                box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+                min-height: 812px;
+            }
+        }
+
+        .status-bar {
+            background: #000;
+            color: #FFD700;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #333;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #000000, #1a1a1a);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+            position: sticky;
+            top: 42px;
+            z-index: 99;
+            border-bottom: 4px solid #FFD700;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .logo-container {
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-3px); }
+        }
+
+        @keyframes shimmer {
+            0% { opacity: 0.3; transform: translateX(-100%); }
+            50% { opacity: 0.8; transform: translateX(0%); }
+            100% { opacity: 0.3; transform: translateX(100%); }
+        }
+
+        /* Animações de treino para o logo FITPRO */
+        @keyframes workoutBreathing {
+            0%, 100% { 
+                transform: perspective(500px) rotateX(15deg) scale(1); 
+                filter: brightness(1);
+            }
+            50% { 
+                transform: perspective(500px) rotateX(15deg) scale(1.02); 
+                filter: brightness(1.1);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { 
+                text-shadow: 0 0 35px rgba(255, 215, 0, 0.9), 0 0 70px rgba(255, 215, 0, 0.4);
+            }
+            25% { 
+                text-shadow: 0 0 45px rgba(255, 215, 0, 1), 0 0 90px rgba(255, 215, 0, 0.6);
+            }
+            50% { 
+                text-shadow: 0 0 35px rgba(255, 215, 0, 0.9), 0 0 70px rgba(255, 215, 0, 0.4);
+            }
+            75% { 
+                text-shadow: 0 0 50px rgba(255, 215, 0, 1), 0 0 100px rgba(255, 215, 0, 0.7);
+            }
+        }
+
+        @keyframes shadowPulse {
+            0%, 100% { 
+                opacity: 0.6; 
+                transform: translateY(2px) scale(1);
+            }
+            50% { 
+                opacity: 0.8; 
+                transform: translateY(3px) scale(1.01);
+            }
+        }
+
+        @keyframes sweatDrop {
+            0% { 
+                opacity: 0; 
+                transform: translateY(0px) scale(0.5);
+            }
+            20% { 
+                opacity: 0.8; 
+                transform: translateY(2px) scale(1);
+            }
+            80% { 
+                opacity: 0.6; 
+                transform: translateY(25px) scale(0.8);
+            }
+            100% { 
+                opacity: 0; 
+                transform: translateY(35px) scale(0.3);
+            }
+        }
+
+        @keyframes muscleVibration {
+            0%, 100% { 
+                transform: translateX(0px) translateY(0px);
+            }
+            25% { 
+                transform: translateX(0.5px) translateY(-0.3px);
+            }
+            50% { 
+                transform: translateX(-0.3px) translateY(0.5px);
+            }
+            75% { 
+                transform: translateX(0.3px) translateY(-0.5px);
+            }
+        }
+
+        /* Partículas de energia super intensas */
+        @keyframes energyParticle1 {
+            0% { 
+                opacity: 0; 
+                transform: translateX(0px) translateY(0px) scale(0.3) rotate(0deg);
+            }
+            15% { 
+                opacity: 1; 
+                transform: translateX(8px) translateY(-5px) scale(1.5) rotate(45deg);
+            }
+            30% { 
+                opacity: 1; 
+                transform: translateX(18px) translateY(-12px) scale(1.2) rotate(90deg);
+            }
+            50% { 
+                opacity: 0.9; 
+                transform: translateX(35px) translateY(-25px) scale(1) rotate(180deg);
+            }
+            75% { 
+                opacity: 0.7; 
+                transform: translateX(55px) translateY(-40px) scale(0.8) rotate(270deg);
+            }
+            100% { 
+                opacity: 0; 
+                transform: translateX(80px) translateY(-60px) scale(0.2) rotate(360deg);
+            }
+        }
+
+        @keyframes energyParticle2 {
+            0% { 
+                opacity: 0; 
+                transform: translateX(0px) translateY(0px) scale(0.4) rotate(0deg);
+            }
+            20% { 
+                opacity: 1; 
+                transform: translateX(-10px) translateY(6px) scale(1.3) rotate(-60deg);
+            }
+            40% { 
+                opacity: 1; 
+                transform: translateX(-22px) translateY(15px) scale(1.1) rotate(-120deg);
+            }
+            65% { 
+                opacity: 0.8; 
+                transform: translateX(-40px) translateY(28px) scale(0.9) rotate(-180deg);
+            }
+            85% { 
+                opacity: 0.5; 
+                transform: translateX(-60px) translateY(45px) scale(0.6) rotate(-270deg);
+            }
+            100% { 
+                opacity: 0; 
+                transform: translateX(-85px) translateY(65px) scale(0.1) rotate(-360deg);
+            }
+        }
+
+        @keyframes energyParticle3 {
+            0% { 
+                opacity: 0; 
+                transform: translateX(0px) translateY(0px) scale(0.5) rotate(0deg);
+            }
+            25% { 
+                opacity: 1; 
+                transform: translateX(12px) translateY(-8px) scale(1.4) rotate(72deg);
+            }
+            45% { 
+                opacity: 1; 
+                transform: translateX(28px) translateY(-20px) scale(1.2) rotate(144deg);
+            }
+            70% { 
+                opacity: 0.9; 
+                transform: translateX(50px) translateY(-38px) scale(0.9) rotate(216deg);
+            }
+            90% { 
+                opacity: 0.4; 
+                transform: translateX(75px) translateY(-58px) scale(0.5) rotate(288deg);
+            }
+            100% { 
+                opacity: 0; 
+                transform: translateX(100px) translateY(-80px) scale(0.1) rotate(360deg);
+            }
+        }
+
+        /* Animações para partículas rápidas */
+        @keyframes fastParticle1 {
+            0% { 
+                opacity: 0; 
+                transform: translateX(0px) translateY(0px) scale(0.2);
+            }
+            30% { 
+                opacity: 1; 
+                transform: translateX(25px) translateY(-15px) scale(1.2);
+            }
+            70% { 
+                opacity: 0.8; 
+                transform: translateX(50px) translateY(-30px) scale(0.8);
+            }
+            100% { 
+                opacity: 0; 
+                transform: translateX(75px) translateY(-45px) scale(0.1);
+            }
+        }
+
+        @keyframes fastParticle2 {
+            0% { 
+                opacity: 0; 
+                transform: translateX(0px) translateY(0px) scale(0.3);
+            }
+            25% { 
+                opacity: 1; 
+                transform: translateX(-20px) translateY(12px) scale(1.1);
+            }
+            60% { 
+                opacity: 0.9; 
+                transform: translateX(-40px) translateY(25px) scale(0.7);
+            }
+            100% { 
+                opacity: 0; 
+                transform: translateX(-65px) translateY(40px) scale(0.1);
+            }
+        }
+
+        /* Animações para micro partículas */
+        @keyframes microParticle {
+            0% { 
+                opacity: 0; 
+                transform: scale(0.1) rotate(0deg);
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.5) rotate(180deg);
+            }
+            100% { 
+                opacity: 0; 
+                transform: scale(0.1) rotate(360deg);
+            }
+        }
+
+        .tagline {
+            font-size: 14px;
+            opacity: 0.9;
+            color: #ccc;
+            font-weight: 500;
+        }
+
+        /* NOVA NAVEGAÇÃO PROFISSIONAL */
+        .nav-tabs-container {
+            position: relative;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            border-bottom: 3px solid #FFD700;
+            overflow-x: auto;
+            position: sticky;
+            top: 146px;
+            z-index: 98;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 0 15px;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .nav-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-tab {
+            flex: none;
+            min-width: 85px;
+            padding: 15px 12px;
+            text-align: center;
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+            border: none;
+            font-size: 10px;
+            font-weight: 800;
+            color: #888;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            -webkit-tap-highlight-color: rgba(255, 215, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin: 8px 4px;
+            border-radius: 20px 20px 8px 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+        }
+
+        .nav-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-tab::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+
+        .nav-tab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+            color: #FFD700;
+            background: linear-gradient(135deg, #333, #2d2d2d);
+        }
+
+        .nav-tab:hover::before {
+            left: 100%;
+        }
+
+        .nav-tab:hover::after {
+            width: 80%;
+        }
+
+        .nav-tab:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        .nav-tab.active {
+            color: #FFD700;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            text-shadow: none;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
+            border: 2px solid #000;
+        }
+
+        .nav-tab.active::after {
+            width: 100%;
+            height: 4px;
+            background: #000;
+        }
+
+        /* Ripple effect for touch */
+        .nav-tab .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.6);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Scroll indicators */
+        .scroll-indicator {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border: 2px solid #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 99;
+            font-size: 14px;
+            font-weight: 800;
+            color: #000;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .scroll-indicator.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scroll-indicator:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .scroll-indicator.left {
+            left: 5px;
+        }
+
+        .scroll-indicator.right {
+            right: 5px;
+        }
+
+        .content {
+            padding: 20px;
+            min-height: calc(100vh - 200px);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            background: #000;
+        }
+
+        .workout-card {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            border: 2px solid #333;
+            border-left: 6px solid #FFD700;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .workout-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .workout-card:hover::before,
+        .workout-card:active::before {
+            opacity: 1;
+        }
+
+        .workout-card:hover,
+        .workout-card:active {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+            border-left: 6px solid #FFD700;
+            border-color: #FFD700;
+        }
+
+        .workout-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #FFD700;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .workout-info {
+            display: flex;
+            justify-content: space-between;
+            color: #ccc;
+            font-size: 14px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            -webkit-tap-highlight-color: transparent;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .start-btn:hover,
+        .start-btn:active {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+            background: linear-gradient(135deg, #FFA500, #FFD700);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            padding: 25px 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+            border: 2px solid #333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat-card:hover::before,
+        .stat-card:active::before {
+            opacity: 1;
+        }
+
+        .stat-card:hover,
+        .stat-card:active {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.2);
+            border-color: #FFD700;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 900;
+            color: #FFD700;
+            margin-bottom: 8px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #ccc;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .progress-bar {
+            background: #333;
+            border-radius: 10px;
+            height: 10px;
+            margin: 15px 0;
+            overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .profile-section {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            border: 2px solid #333;
+        }
+
+        .profile-section h3 {
+            color: #FFD700;
+            margin-top: 0;
+            font-weight: 800;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Dark mode styles - SmartFit já é escuro */
+        .dark-mode {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%) !important;
+        }
+
+        /* Chart styles */
+        .chart-container {
+            width: 100%;
+            height: 200px;
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #333;
+        }
+
+        .chart-bar {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 6px;
+            margin: 3px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Notification styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            padding: 15px 20px;
+            border-radius: 15px;
+            font-weight: 700;
+            z-index: 1000;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            max-width: calc(100vw - 40px);
+            font-size: 14px;
+            border: 2px solid #000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 767px) {
+            .nav-tabs {
+                top: 104px;
+                padding: 0 10px;
+            }
+            
+            .nav-tab {
+                min-width: 75px;
+                padding: 12px 8px;
+                margin: 6px 2px;
+                font-size: 9px;
+            }
+            
+            .scroll-indicator {
+                width: 30px;
+                height: 30px;
+                font-size: 12px;
+            }
+            
+            .notification {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                transform: translateY(-100%);
+                max-width: none;
+            }
+            
+            .notification.show {
+                transform: translateY(0);
+            }
+            
+            .content {
+                padding: 15px;
+            }
+            
+            .stats-grid {
+                gap: 12px;
+            }
+            
+            .stat-card {
+                padding: 20px 15px;
+            }
+        }
+
+        /* PWA Install Button */
+        .install-prompt {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
+            z-index: 1001;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            border: 3px solid #000;
+        }
+
+        .install-prompt.show {
+            transform: translateY(0);
+        }
+
+        .install-btn {
+            background: #000;
+            color: #FFD700;
+            border: 2px solid #FFD700;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 15px;
+            -webkit-tap-highlight-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .install-btn:hover,
+        .install-btn:active {
+            background: #FFD700;
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        /* Vibration feedback for touch */
+        .vibrate-on-tap {
+            -webkit-tap-highlight-color: rgba(255, 215, 0, 0.2);
+        }
+
+        /* FitPro specific elements */
+        .fitpro-badge {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .premium-card {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+            border: 3px solid #000;
+        }
+
+        .premium-card h3 {
+            color: #000 !important;
+            text-shadow: none !important;
+            margin-bottom: 10px;
+        }
+
+        /* EXPERIÊNCIA MOBILE: Toque responsivo - Achievement touch effects */
+        .achievement-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .achievement-card:active {
+            transform: scale(0.95);
+        }
+
+        /* Mobile Touch Cards - Enhanced Responsiveness */
+        .mobile-touch-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-touch-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .mobile-touch-card:active::before {
+            opacity: 1;
+        }
+
+        .mobile-touch-card:active {
+            transform: scale(0.92);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Touch Ripple Effect */
+        .mobile-touch-card .touch-ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.4);
+            transform: scale(0);
+            animation: touch-ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes touch-ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Page Indicators */
+        .page-indicator:hover {
+            transform: scale(1.2);
+        }
+
+        .page-indicator:active {
+            transform: scale(0.9);
+        }
+
+        /* Achievements Navigation Buttons */
+        #achievementsPrev:disabled,
+        #achievementsNext:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        #achievementsPrev:disabled:active,
+        #achievementsNext:disabled:active {
+            transform: none !important;
+        }
+
+        /* Swipe gesture support */
+        .achievements-page {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Enhanced mobile touch feedback */
+        @media (max-width: 767px) {
+            .mobile-touch-card:active {
+                transform: scale(0.88);
+            }
+            
+            .achievement-card {
+                min-height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-container">
+        <div class="status-bar">
+            <span id="currentTime">9:41</span>
+            <span>🔋 <span id="batteryLevel">100%</span></span>
+        </div>
+
+        <div class="header">
+            <div class="logo-container" style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                <svg width="80" height="80" viewBox="0 0 120 120" style="margin-right: 20px; filter: drop-shadow(0 8px 25px rgba(255, 215, 0, 0.7));">
+                    <defs>
+                        <!-- Training gradient for logo -->
+                        <linearGradient id="trainingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#FFA500;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:1" />
+                        </linearGradient>
+                        
+                        <!-- Dark gradient for contrast -->
+                        <linearGradient id="darkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#000;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#1a1a1a;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#000;stop-opacity:1" />
+                        </linearGradient>
+                        
+                        <!-- Metallic gradient for dumbbells -->
+                        <linearGradient id="metallicGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#C0C0C0;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#808080;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#404040;stop-opacity:1" />
+                        </linearGradient>
+                        
+                        <!-- Glow effect -->
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge> 
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    
+                    <!-- Outer training ring -->
+                    <circle cx="60" cy="60" r="55" fill="none" stroke="url(#trainingGradient)" stroke-width="4" opacity="0.4"/>
+                    <circle cx="60" cy="60" r="48" fill="none" stroke="url(#trainingGradient)" stroke-width="2" opacity="0.7"/>
+                    
+                    <!-- Main dumbbell design -->
+                    <g transform="translate(60,60)" filter="url(#glow)">
+                        <!-- Central bar of dumbbell -->
+                        <rect x="-25" y="-3" width="50" height="6" fill="url(#metallicGradient)" rx="3"/>
+                        
+                        <!-- Left weight plates -->
+                        <rect x="-35" y="-12" width="15" height="24" fill="url(#trainingGradient)" rx="3"/>
+                        <rect x="-32" y="-9" width="9" height="18" fill="url(#darkGradient)" rx="2"/>
+                        
+                        <!-- Right weight plates -->
+                        <rect x="20" y="-12" width="15" height="24" fill="url(#trainingGradient)" rx="3"/>
+                        <rect x="23" y="-9" width="9" height="18" fill="url(#darkGradient)" rx="2"/>
+                        
+                        <!-- Grip texture on bar -->
+                        <g stroke="url(#darkGradient)" stroke-width="1" opacity="0.6">
+                            <line x1="-15" y1="-2" x2="-15" y2="2"/>
+                            <line x1="-10" y1="-2" x2="-10" y2="2"/>
+                            <line x1="-5" y1="-2" x2="-5" y2="2"/>
+                            <line x1="0" y1="-2" x2="0" y2="2"/>
+                            <line x1="5" y1="-2" x2="5" y2="2"/>
+                            <line x1="10" y1="-2" x2="10" y2="2"/>
+                            <line x1="15" y1="-2" x2="15" y2="2"/>
+                        </g>
+                        
+                        <!-- Weight indicators -->
+                        <text x="-27" y="2" fill="url(#darkGradient)" font-size="8" font-weight="bold" text-anchor="middle">20</text>
+                        <text x="27" y="2" fill="url(#darkGradient)" font-size="8" font-weight="bold" text-anchor="middle">20</text>
+                        
+                        <!-- Muscle flex symbol -->
+                        <g transform="translate(0, 20)">
+                            <path d="M-8 -5 Q-5 -8, 0 -5 Q5 -8, 8 -5 Q5 -2, 0 -5 Q-5 -2, -8 -5 Z" 
+                                  fill="url(#trainingGradient)" opacity="0.8"/>
+                        </g>
+                    </g>
+                    
+                    <!-- Training energy particles -->
+                    <g opacity="0.9">
+                        <circle cx="20" cy="30" r="2" fill="#FFD700">
+                            <animate attributeName="opacity" values="0.3;1;0.3" dur="1.8s" repeatCount="indefinite"/>
+                            <animate attributeName="cy" values="30;25;30" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="100" cy="40" r="1.5" fill="#FFA500">
+                            <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
+                            <animate attributeName="cx" values="100;95;100" dur="2.2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="25" cy="90" r="2.5" fill="#FFD700">
+                            <animate attributeName="opacity" values="0.2;1;0.2" dur="2.5s" repeatCount="indefinite"/>
+                            <animate attributeName="cy" values="90;85;90" dur="1.8s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="95" cy="80" r="1.8" fill="#FF8C00">
+                            <animate attributeName="opacity" values="0.4;1;0.4" dur="1.8s" repeatCount="indefinite"/>
+                            <animate attributeName="cx" values="95;90;95" dur="2.5s" repeatCount="indefinite"/>
+                        </circle>
+                    </g>
+                    
+                    <!-- Training motivation lines -->
+                    <g stroke="url(#trainingGradient)" stroke-width="3" stroke-linecap="round" opacity="0.6">
+                        <path d="M10 15 L20 10 L30 15">
+                            <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+                        </path>
+                        <path d="M90 20 L100 15 L110 20">
+                            <animate attributeName="opacity" values="0.5;1;0.5" dur="1.8s" repeatCount="indefinite"/>
+                        </path>
+                        <path d="M10 105 L20 100 L30 105">
+                            <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.2s" repeatCount="indefinite"/>
+                        </path>
+                        <path d="M90 100 L100 95 L110 100">
+                            <animate attributeName="opacity" values="0.3;0.7;0.3" dur="1.9s" repeatCount="indefinite"/>
+                        </path>
+                    </g>
+                    
+                    <!-- Power burst effects -->
+                    <g opacity="0.7">
+                        <path d="M60 10 L65 20 L60 15 L55 20 Z" fill="url(#trainingGradient)">
+                            <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
+                        </path>
+                        <path d="M110 60 L100 65 L105 60 L100 55 Z" fill="url(#trainingGradient)">
+                            <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.8s" repeatCount="indefinite"/>
+                        </path>
+                        <path d="M60 110 L55 100 L60 105 L65 100 Z" fill="url(#trainingGradient)">
+                            <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2s" repeatCount="indefinite"/>
+                        </path>
+                        <path d="M10 60 L20 55 L15 60 L20 65 Z" fill="url(#trainingGradient)">
+                            <animate attributeName="opacity" values="0.6;1;0.6" dur="1.7s" repeatCount="indefinite"/>
+                        </path>
+                    </g>
+                </svg>
+                <div class="logo" style="font-family: 'Black Ops One', 'Teko', 'Bebas Neue', 'Anton', 'Oswald', sans-serif; font-weight: 900; font-size: 38px; letter-spacing: 6px; background: linear-gradient(135deg, #FFD700, #FFA500, #FF8C00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 35px rgba(255, 215, 0, 0.9), 0 0 70px rgba(255, 215, 0, 0.4); position: relative; transform: perspective(500px) rotateX(15deg); text-transform: uppercase; animation: workoutBreathing 2s ease-in-out infinite, heartbeat 1.2s ease-in-out infinite;">
+                    FITPRO
+                    
+                    <!-- Camada de sombra com respiração -->
+                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: blur(2px); opacity: 0.6; z-index: -1; transform: translateY(2px); animation: shadowPulse 2s ease-in-out infinite;">FITPRO</div>
+                    
+                    <!-- Camada de brilho com shimmer -->
+                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, #FFFFFF, #FFD700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: blur(0.5px); opacity: 0.3; z-index: 1; animation: shimmer 3s ease-in-out infinite;">FITPRO</div>
+                    
+                    <!-- Efeito de suor (gotas) -->
+                    <div style="position: absolute; top: -10px; left: 20%; width: 4px; height: 4px; background: #87CEEB; border-radius: 50%; opacity: 0.8; animation: sweatDrop 3s ease-in-out infinite;"></div>
+                    <div style="position: absolute; top: -8px; right: 25%; width: 3px; height: 3px; background: #87CEEB; border-radius: 50%; opacity: 0.6; animation: sweatDrop 3.5s ease-in-out infinite 0.5s;"></div>
+                    <div style="position: absolute; top: -12px; left: 60%; width: 5px; height: 5px; background: #87CEEB; border-radius: 50%; opacity: 0.7; animation: sweatDrop 2.8s ease-in-out infinite 1s;"></div>
+                    
+                    <!-- Efeito de vibração muscular -->
+                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, #FFD700, #FFA500, #FF8C00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0.1; z-index: 2; animation: muscleVibration 0.1s ease-in-out infinite;">FITPRO</div>
+                    
+                    <!-- PARTÍCULAS DE ENERGIA SUPER INTENSAS -->
+                    <!-- Partículas principais com brilho -->
+                    <div style="position: absolute; top: 50%; left: -15px; width: 4px; height: 4px; background: #FFD700; border-radius: 50%; box-shadow: 0 0 12px #FFD700, 0 0 24px #FFD700; animation: energyParticle1 2s ease-in-out infinite;"></div>
+                    <div style="position: absolute; top: 30%; right: -12px; width: 3.5px; height: 3.5px; background: #FFA500; border-radius: 50%; box-shadow: 0 0 10px #FFA500, 0 0 20px #FFA500; animation: energyParticle2 2.5s ease-in-out infinite 0.3s;"></div>
+                    <div style="position: absolute; bottom: 20%; left: -10px; width: 4px; height: 4px; background: #FF8C00; border-radius: 50%; box-shadow: 0 0 12px #FF8C00, 0 0 24px #FF8C00; animation: energyParticle3 1.8s ease-in-out infinite 0.8s;"></div>
+                    
+                    <!-- Partículas secundárias para densidade -->
+                    <div style="position: absolute; top: 15%; left: 50%; width: 3px; height: 3px; background: #FFD700; border-radius: 50%; box-shadow: 0 0 8px #FFD700; animation: energyParticle1 1.5s ease-in-out infinite 0.5s;"></div>
+                    <div style="position: absolute; bottom: 35%; right: -8px; width: 2.5px; height: 2.5px; background: #FFA500; border-radius: 50%; box-shadow: 0 0 6px #FFA500; animation: energyParticle2 2.2s ease-in-out infinite 0.7s;"></div>
+                    <div style="position: absolute; top: 70%; left: -8px; width: 3.5px; height: 3.5px; background: #FF8C00; border-radius: 50%; box-shadow: 0 0 10px #FF8C00; animation: energyParticle3 1.6s ease-in-out infinite 1.2s;"></div>
+                    
+                    <!-- Partículas rápidas e pequenas -->
+                    <div style="position: absolute; top: 40%; right: 50%; width: 2px; height: 2px; background: #FFFF00; border-radius: 50%; box-shadow: 0 0 6px #FFFF00; animation: fastParticle1 1.2s ease-in-out infinite 0.2s;"></div>
+                    <div style="position: absolute; bottom: 50%; left: 50%; width: 2px; height: 2px; background: #FFFF00; border-radius: 50%; box-shadow: 0 0 6px #FFFF00; animation: fastParticle2 1.4s ease-in-out infinite 0.9s;"></div>
+                    
+                    <!-- Micro partículas extras -->
+                    <div style="position: absolute; top: 25%; left: 30%; width: 1.5px; height: 1.5px; background: #FFD700; border-radius: 50%; box-shadow: 0 0 4px #FFD700; animation: microParticle 0.8s ease-in-out infinite;"></div>
+                    <div style="position: absolute; bottom: 40%; right: 30%; width: 1.5px; height: 1.5px; background: #FFA500; border-radius: 50%; box-shadow: 0 0 4px #FFA500; animation: microParticle 1s ease-in-out infinite 0.4s;"></div>
+                    <div style="position: absolute; top: 60%; left: 70%; width: 1.5px; height: 1.5px; background: #FF8C00; border-radius: 50%; box-shadow: 0 0 4px #FF8C00; animation: microParticle 0.9s ease-in-out infinite 0.6s;"></div>
+                    
+                    <!-- Partículas de alta energia -->
+                    <div style="position: absolute; top: 10%; right: 10%; width: 2.5px; height: 2.5px; background: #FFD700; border-radius: 50%; box-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700; animation: energyParticle1 1.3s ease-in-out infinite 1.5s;"></div>
+                    <div style="position: absolute; bottom: 10%; left: 10%; width: 2.5px; height: 2.5px; background: #FFA500; border-radius: 50%; box-shadow: 0 0 8px #FFA500, 0 0 16px #FFA500; animation: energyParticle2 1.7s ease-in-out infinite 1.8s;"></div>
+                </div>
+            </div>
+            <div class="tagline">SEU PERSONAL TRAINER DIGITAL</div>
+        </div>
+
+        <div class="nav-tabs-container">
+            <div class="scroll-indicator left" onclick="scrollTabs('left')">◀</div>
+            <div class="scroll-indicator right" onclick="scrollTabs('right')">▶</div>
+            <div class="nav-tabs" id="navTabs">
+                <button class="nav-tab active vibrate-on-tap" onclick="showTab('home')">
+                    <div style="font-size: 18px; margin-bottom: 4px;">🏠</div>
+                    <div style="font-size: 9px; font-weight: 800;">INÍCIO</div>
+                </button>
+                <button class="nav-tab vibrate-on-tap" onclick="showTab('workouts')">
+                    <div style="font-size: 18px; margin-bottom: 4px;">💪</div>
+                    <div style="font-size: 9px; font-weight: 800;">TREINOS</div>
+                </button>
+                <button class="nav-tab vibrate-on-tap" onclick="showTab('schedule')">
+                    <div style="font-size: 18px; margin-bottom: 4px;">📅</div>
+                    <div style="font-size: 9px; font-weight: 800;">CRONOGRAMA</div>
+                </button>
+                <button class="nav-tab vibrate-on-tap" onclick="showTab('recipes')">
+                    <div style="font-size: 18px; margin-bottom: 4px;">🍽️</div>
+                    <div style="font-size: 9px; font-weight: 800;">NUTRIÇÃO</div>
+                </button>
+                <button class="nav-tab vibrate-on-tap" onclick="showTab('progress')">
+                    <div style="font-size: 18px; margin-bottom: 4px;">📊</div>
+                    <div style="font-size: 9px; font-weight: 800;">EVOLUÇÃO</div>
+                </button>
+                <button class="nav-tab vibrate-on-tap" onclick="showTab('alarms')">
+                    <div style="font-size: 18px; margin-bottom: 4px;">⏰</div>
+                    <div style="font-size: 9px; font-weight: 800;">ALARMES</div>
+                </button>
+                <button class="nav-tab vibrate-on-tap" onclick="showTab('ai-coach')">
+                    <div style="font-size: 18px; margin-bottom: 4px;">🤖</div>
+                    <div style="font-size: 9px; font-weight: 800;">IA COACH</div>
+                </button>
+                <button class="nav-tab vibrate-on-tap" onclick="showTab('profile')">
+                    <div style="font-size: 18px; margin-bottom: 4px;">👤</div>
+                    <div style="font-size: 9px; font-weight: 800;">PERFIL</div>
+                </button>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Home Tab with SmartFit Design -->
+            <div id="home-tab" class="tab-content">
+                <!-- Premium Banner -->
+                <div class="premium-card">
+                    <div class="fitpro-badge">PREMIUM MEMBER</div>
+                    <h3 style="margin: 0; font-size: 18px;">🏆 ACESSO TOTAL LIBERADO</h3>
+                    <p style="margin: 10px 0 0 0; font-size: 14px; font-weight: 600;">Todos os treinos e funcionalidades disponíveis!</p>
+                </div>
+
+                <!-- Theme Selection -->
+                <div class="profile-section">
+                    <h3 style="margin-top: 0; color: #FFD700; font-size: 18px;">🎨 ESCOLHA SEU TEMA</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                        <!-- FitPro Theme -->
+                        <div onclick="setTheme('fitpro')" id="fitproTheme" class="vibrate-on-tap" style="background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; padding: 20px; border-radius: 15px; text-align: center; cursor: pointer; border: 3px solid #000; transition: all 0.3s ease;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">🏋️‍♂️</div>
+                            <div style="font-weight: 800; font-size: 14px; text-transform: uppercase;">FITPRO</div>
+                            <div style="font-size: 10px; margin-top: 5px; opacity: 0.8;">PRETO & DOURADO</div>
+                        </div>
+                        
+                        <!-- Dark Theme -->
+                        <div onclick="setTheme('dark')" id="darkTheme" class="vibrate-on-tap" style="background: linear-gradient(135deg, #1a1a1a, #333); color: #fff; padding: 20px; border-radius: 15px; text-align: center; cursor: pointer; border: 3px solid #333; transition: all 0.3s ease;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">🌙</div>
+                            <div style="font-weight: 800; font-size: 14px; text-transform: uppercase;">ESCURO</div>
+                            <div style="font-size: 10px; margin-top: 5px; opacity: 0.8;">ULTRA DARK</div>
+                        </div>
+                        
+                        <!-- Blue Theme -->
+                        <div onclick="setTheme('blue')" id="blueTheme" class="vibrate-on-tap" style="background: linear-gradient(135deg, #007bff, #0056b3); color: #fff; padding: 20px; border-radius: 15px; text-align: center; cursor: pointer; border: 3px solid #007bff; transition: all 0.3s ease;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">💙</div>
+                            <div style="font-weight: 800; font-size: 14px; text-transform: uppercase;">AZUL</div>
+                            <div style="font-size: 10px; margin-top: 5px; opacity: 0.8;">OCEANO</div>
+                        </div>
+                        
+                        <!-- Green Theme -->
+                        <div onclick="setTheme('green')" id="greenTheme" class="vibrate-on-tap" style="background: linear-gradient(135deg, #28a745, #1e7e34); color: #fff; padding: 20px; border-radius: 15px; text-align: center; cursor: pointer; border: 3px solid #28a745; transition: all 0.3s ease;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">💚</div>
+                            <div style="font-weight: 800; font-size: 14px; text-transform: uppercase;">VERDE</div>
+                            <div style="font-size: 10px; margin-top: 5px; opacity: 0.8;">NATUREZA</div>
+                        </div>
+                        
+                        <!-- Purple Theme -->
+                        <div onclick="setTheme('purple')" id="purpleTheme" class="vibrate-on-tap" style="background: linear-gradient(135deg, #6f42c1, #5a32a3); color: #fff; padding: 20px; border-radius: 15px; text-align: center; cursor: pointer; border: 3px solid #6f42c1; transition: all 0.3s ease;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">💜</div>
+                            <div style="font-weight: 800; font-size: 14px; text-transform: uppercase;">ROXO</div>
+                            <div style="font-size: 10px; margin-top: 5px; opacity: 0.8;">MÍSTICO</div>
+                        </div>
+                        
+                        <!-- Red Theme -->
+                        <div onclick="setTheme('red')" id="redTheme" class="vibrate-on-tap" style="background: linear-gradient(135deg, #dc3545, #c82333); color: #fff; padding: 20px; border-radius: 15px; text-align: center; cursor: pointer; border: 3px solid #dc3545; transition: all 0.3s ease;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">❤️</div>
+                            <div style="font-weight: 800; font-size: 14px; text-transform: uppercase;">VERMELHO</div>
+                            <div style="font-size: 10px; margin-top: 5px; opacity: 0.8;">ENERGIA</div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; color: #ccc; font-size: 12px; font-weight: 600;">
+                        🎨 TEMA ATUAL: <span id="currentThemeName" style="color: #FFD700; font-weight: 800;">FITPRO</span>
+                    </div>
+                </div>
+
+                <h3 style="margin: 25px 0 20px 0; color: #FFD700; font-size: 20px; font-weight: 800;">🏠 DASHBOARD INTELIGENTE</h3>
+
+                <!-- Daily Goals -->
+                <div class="profile-section">
+                    <h3 style="margin-top: 0; color: #FFD700; font-size: 18px;">🎯 METAS DIÁRIAS INTERATIVAS</h3>
+                    <div class="stats-grid" style="grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+                        <div class="stat-card vibrate-on-tap" onclick="updateDailyGoal('water')">
+                            <div class="stat-number" id="waterCount">6</div>
+                            <div class="stat-label">💧 ÁGUA</div>
+                            <div style="font-size: 10px; color: #888; margin-top: 5px;">META: 8</div>
+                        </div>
+                        <div class="stat-card vibrate-on-tap" onclick="updateDailyGoal('steps')">
+                            <div class="stat-number" id="stepsCount">7.2k</div>
+                            <div class="stat-label">👟 PASSOS</div>
+                            <div style="font-size: 10px; color: #888; margin-top: 5px;">META: 10k</div>
+                        </div>
+                        <div class="stat-card vibrate-on-tap" onclick="updateDailyGoal('calories')">
+                            <div class="stat-number" id="caloriesCount">1.8k</div>
+                            <div class="stat-label">🔥 KCAL</div>
+                            <div style="font-size: 10px; color: #888; margin-top: 5px;">META: 2.2k</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Streak Counter -->
+                <div class="profile-section">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h3 style="margin: 0; color: #FFD700; font-size: 18px;">🔥 SEQUÊNCIA ATUAL</h3>
+                            <div style="font-size: 36px; font-weight: 900; color: #FFD700; margin: 8px 0; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);" id="streakCount">7</div>
+                            <div style="font-size: 12px; color: #ccc; font-weight: 600; text-transform: uppercase;">DIAS CONSECUTIVOS</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 52px;">🏆</div>
+                            <div style="font-size: 12px; color: #FFD700; font-weight: 800; text-transform: uppercase;">NÍVEL OURO!</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weekly Challenge -->
+                <div class="profile-section">
+                    <h3 style="margin-top: 0; color: #FFD700; font-size: 18px;">⚡ DESAFIO DA SEMANA</h3>
+                    <div style="background: linear-gradient(135deg, #333, #1a1a1a); color: #FFD700; padding: 20px; border-radius: 15px; margin-bottom: 20px; border: 2px solid #FFD700;">
+                        <div style="font-weight: 800; margin-bottom: 8px; font-size: 16px;">🏃‍♂️ CARDIO CHALLENGE</div>
+                        <div style="font-size: 14px; color: #ccc; font-weight: 500;">Complete 150 minutos de cardio esta semana</div>
+                        <div style="margin-top: 15px;">
+                            <div style="background: #333; border-radius: 10px; height: 8px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);">
+                                <div style="background: linear-gradient(90deg, #FFD700, #FFA500); height: 100%; width: 68%; border-radius: 10px; box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);"></div>
+                            </div>
+                            <div style="font-size: 12px; margin-top: 8px; font-weight: 600;">102/150 minutos (68%)</div>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div style="text-align: center; padding: 15px; background: #1a1a1a; border-radius: 12px; border: 2px solid #333;">
+                            <div style="font-size: 20px; font-weight: 800; color: #FFD700;">#3</div>
+                            <div style="font-size: 12px; color: #ccc; font-weight: 600; text-transform: uppercase;">SEU RANKING</div>
+                        </div>
+                        <div style="text-align: center; padding: 15px; background: #1a1a1a; border-radius: 12px; border: 2px solid #333;">
+                            <div style="font-size: 20px; font-weight: 800; color: #FFD700;">2 DIAS</div>
+                            <div style="font-size: 12px; color: #ccc; font-weight: 600; text-transform: uppercase;">RESTANTES</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EXPERIÊNCIA MOBILE: Toque responsivo - Achievements with Professional Mobile Navigation -->
+                <div class="profile-section">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h3 style="margin: 0; color: #FFD700; font-size: 18px;">🏅 CONQUISTAS RECENTES</h3>
+                        <div style="display: flex; gap: 8px;">
+                            <button id="achievementsPrev" onclick="navigateAchievements('prev')" class="vibrate-on-tap" style="background: #333; color: #FFD700; border: 2px solid #FFD700; padding: 8px 12px; border-radius: 20px; font-size: 12px; cursor: pointer; font-weight: 800; transition: all 0.3s ease;">
+                                ◀ ANTERIOR
+                            </button>
+                            <button id="achievementsNext" onclick="navigateAchievements('next')" class="vibrate-on-tap" style="background: #FFD700; color: #000; border: 2px solid #000; padding: 8px 12px; border-radius: 20px; font-size: 12px; cursor: pointer; font-weight: 800; transition: all 0.3s ease;">
+                                PRÓXIMO ▶
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- EXPERIÊNCIA MOBILE: Toque responsivo -->
+                    <div id="achievementsContainer" style="position: relative; overflow: hidden; border-radius: 15px; background: #0a0a0a; padding: 10px;">
+                        <div id="achievementsSlider" style="display: flex; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); gap: 15px; padding: 10px 5px;">
+                            <!-- Page 1 -->
+                            <div class="achievements-page" style="display: flex; gap: 15px; min-width: 100%; justify-content: space-between;">
+                                <div onclick="showAchievementDetails('primeira-semana')" class="achievement-card vibrate-on-tap mobile-touch-card" style="flex: 1; text-align: center; background: linear-gradient(135deg, #1a1a1a, #2d2d2d); padding: 20px 15px; border-radius: 15px; border: 3px solid #FFD700; cursor: pointer; transition: all 0.3s ease; -webkit-tap-highlight-color: rgba(255, 215, 0, 0.3); position: relative; overflow: hidden;">
+                                    <div style="font-size: 32px; margin-bottom: 8px;">🥇</div>
+                                    <div style="font-size: 11px; font-weight: 800; color: #FFD700; text-transform: uppercase; line-height: 1.2;">PRIMEIRA<br>SEMANA</div>
+                                    <div style="font-size: 9px; color: #ccc; margin-top: 5px; opacity: 0.8;">7 DIAS</div>
+                                </div>
+                                <div onclick="showAchievementDetails('hidratacao')" class="achievement-card vibrate-on-tap mobile-touch-card" style="flex: 1; text-align: center; background: linear-gradient(135deg, #1a1a1a, #2d2d2d); padding: 20px 15px; border-radius: 15px; border: 3px solid #17a2b8; cursor: pointer; transition: all 0.3s ease; -webkit-tap-highlight-color: rgba(23, 162, 184, 0.3); position: relative; overflow: hidden;">
+                                    <div style="font-size: 32px; margin-bottom: 8px;">💧</div>
+                                    <div style="font-size: 11px; font-weight: 800; color: #17a2b8; text-transform: uppercase; line-height: 1.2;">HIDRATAÇÃO<br>MASTER</div>
+                                    <div style="font-size: 9px; color: #ccc; margin-top: 5px; opacity: 0.8;">50 COPOS</div>
+                                </div>
+                                <div onclick="showAchievementDetails('queimador')" class="achievement-card vibrate-on-tap mobile-touch-card" style="flex: 1; text-align: center; background: linear-gradient(135deg, #1a1a1a, #2d2d2d); padding: 20px 15px; border-radius: 15px; border: 3px solid #28a745; cursor: pointer; transition: all 0.3s ease; -webkit-tap-highlight-color: rgba(40, 167, 69, 0.3); position: relative; overflow: hidden;">
+                                    <div style="font-size: 32px; margin-bottom: 8px;">🔥</div>
+                                    <div style="font-size: 11px; font-weight: 800; color: #28a745; text-transform: uppercase; line-height: 1.2;">QUEIMADOR<br>DE CALORIAS</div>
+                                    <div style="font-size: 9px; color: #ccc; margin-top: 5px; opacity: 0.8;">5000 KCAL</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Page 2 -->
+                            <div class="achievements-page" style="display: flex; gap: 15px; min-width: 100%; justify-content: space-between;">
+                                <div onclick="showAchievementDetails('forca-total')" class="achievement-card vibrate-on-tap mobile-touch-card" style="flex: 1; text-align: center; background: linear-gradient(135deg, #1a1a1a, #2d2d2d); padding: 20px 15px; border-radius: 15px; border: 3px solid #dc3545; cursor: pointer; transition: all 0.3s ease; -webkit-tap-highlight-color: rgba(220, 53, 69, 0.3); position: relative; overflow: hidden;">
+                                    <div style="font-size: 32px; margin-bottom: 8px;">💪</div>
+                                    <div style="font-size: 11px; font-weight: 800; color: #dc3545; text-transform: uppercase; line-height: 1.2;">FORÇA<br>TOTAL</div>
+                                    <div style="font-size: 9px; color: #ccc; margin-top: 5px; opacity: 0.8;">100 REPS</div>
+                                </div>
+                                <div onclick="showAchievementDetails('maratonista')" class="achievement-card vibrate-on-tap mobile-touch-card" style="flex: 1; text-align: center; background: linear-gradient(135deg, #1a1a1a, #2d2d2d); padding: 20px 15px; border-radius: 15px; border: 3px solid #6f42c1; cursor: pointer; transition: all 0.3s ease; -webkit-tap-highlight-color: rgba(111, 66, 193, 0.3); position: relative; overflow: hidden;">
+                                    <div style="font-size: 32px; margin-bottom: 8px;">🏃‍♂️</div>
+                                    <div style="font-size: 11px; font-weight: 800; color: #6f42c1; text-transfo
